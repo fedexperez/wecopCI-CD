@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `eco_products` (
   `emision` double(8,2) NOT NULL,
   `product_life` int(11) NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `not_eco_product` bigint(20) UNSIGNED NOT NULL FOREIGN KEY REFERENCES `not_eco_products` (`id`),
+  `not_eco_product` bigint(20) UNSIGNED NOT NULL FOREIGN KEY REFERENCES not_eco_products(`id`),
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 );
