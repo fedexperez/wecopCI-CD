@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `emision` double(8,2) NOT NULL,
   `product_life` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 );
 
 --
