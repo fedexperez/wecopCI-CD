@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `not_eco_products` (
 --
 -- Dumping data for table `not_eco_products`
 --
-ALTER TABLE 'not_eco_products'
+ALTER TABLE not_eco_products
   DROP COLUMN 'id',
   ADD COLUMN 'id' INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
