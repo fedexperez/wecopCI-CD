@@ -40,9 +40,6 @@ CREATE TABLE IF NOT EXISTS `not_eco_products` (
 --
 -- Dumping data for table `not_eco_products`
 --
-ALTER TABLE `not_eco_products`
-  DROP COLUMN (`id`),
-  ADD COLUMN (`id`) INT NOT NULL AUTO_INCREMENT PRIMARY KEY;
 
 INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `product_life`, `created_at`, `updated_at`) VALUES
 (1, 'Common Straw', 0.01, 1.46, 1, '2021-03-23 04:20:10', '2021-03-23 04:20:10'),
@@ -57,6 +54,13 @@ INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `produc
 -- Indexes for table `not_eco_products`
 --
 
+BEGIN
+  IF 
+  (SELECT COUNT(*)FROM `not_eco_products`)= 1
+  THEN 
+  ALTER TABLE `not_eco_products`
+    ADD PRIMARY KEY (`id`);
+END
 
 --
 -- AUTO_INCREMENT for dumped tables
