@@ -62,8 +62,6 @@ INSERT IGNORE INTO `eco_products` (`id`, `name`, `price`, `stock`, `facts`, `des
 --
 -- Indexes for table `eco_products`
 --
-ALTER TABLE `eco_products`
-  ADD KEY `eco_products_not_eco_product_foreign` (`not_eco_product`);
 
 --
 -- AUTO_INCREMENT for dumped tables
