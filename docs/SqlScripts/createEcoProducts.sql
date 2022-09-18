@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `eco_products`
 --
 
-CREATE TABLE `eco_products` (
+CREATE TABLE IF NOT EXISTS `eco_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double(8,2) NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE `eco_products` (
 -- Dumping data for table `eco_products`
 --
 
-INSERT INTO `eco_products` (`id`, `name`, `price`, `stock`, `facts`, `description`, `categories`, `emision`, `product_life`, `photo`, `not_eco_product_id`, `created_at`, `updated_at`) VALUES
+INSERT IGNORE INTO `eco_products` (`id`, `name`, `price`, `stock`, `facts`, `description`, `categories`, `emision`, `product_life`, `photo`, `not_eco_product_id`, `created_at`, `updated_at`) VALUES
 (4, 'Bamboo Straws', 13.20, 0, 'Bamboo is the FASTEST growing land plant in the world... The only thing that grows quicker is giant sea kelp in the ocean!', 'A wonderful Six pack of ecological and reusable bamboo straws. Includes straw cleaner and a little bag.', 'straws, bamboo, daily use', 38.80, 3650, 'bambooStraw.jpg', 1, '2021-04-04 03:44:51', '2021-04-04 03:44:51'),
 (5, 'Metalic Straw', 11.00, 25, 'Unlike some alternatives like bamboo or glass straws, stainless steel straws don\'t break easily and can even hold up against rust.', 'A wonderful four pack of ecological and reusable colorful metalic straws. Includes straw cleaner.', 'daily use, straw, metalic', 217.00, 3650, 'metalicStraws.jpg', 1, '2021-04-04 03:44:51', '2021-04-04 03:44:51'),
 (6, 'Paper Straw', 7.00, 123, 'Paper is biodegradable and comes from trees, which is a renewable resource.', 'A pack of 40 colorful paper straws.', 'Daily use, straw, paper', 1.38, 1, 'paperStraws.jpg', 1, '2021-04-15 03:48:40', '2021-04-15 03:48:40'),

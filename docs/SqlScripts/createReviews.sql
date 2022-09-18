@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `reviews`
 --
 
-CREATE TABLE `reviews` (
+CREATE TABLE IF NOT EXISTS `reviews` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `rating` double(8,2) NOT NULL,
   `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `reviews` (
 --
 
 
-INSERT INTO `reviews` (`id`, `rating`, `title`, `message`, `eco_product_id`, `user_id`, `created_at`, `updated_at`) VALUES
+INSERT IGNORE INTO `reviews` (`id`, `rating`, `title`, `message`, `eco_product_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 4.00, 'Student', 'Meh', 4, 4, NULL, NULL),
 (2, 5.00, 'Hiiii', 'WOW', 4, 4, '2021-04-07 03:53:13', NULL),
 (3, 3.00, 'Freak', 'A lot', 4, 4, '2021-04-06 23:13:02', NULL),

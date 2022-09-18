@@ -38,7 +38,7 @@ jobs:
     - name: Install Dependencies
       working-directory: ./WECOP
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
+      
     - name: Generate key
       working-directory: ./WECOP
       run: php artisan key:generate
@@ -46,23 +46,28 @@ jobs:
     - name: Directory Permissions
       working-directory: ./WECOP
       run: chmod -R 777 storage bootstrap/cache
-    
+
     - name: Run Migration
       working-directory: ./WECOP
       run: php artisan migrate:refresh
       env:
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-    
+
     - name: Execute scripts to upload data to database
       env:
         DB_DATABASE: laravel
       run: |
         mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW DATABASES;"
         mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW TABLES FROM laravel;"
+        mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/dropTables.sql;"
+        echo "After drop"
+        mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW TABLES FROM laravel;"
         mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createNotEcoProducts.sql;"
         mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createEcoProducts.sql;"
+        mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW ENGINE INNODB STATUS;"
         mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createUsers.sql"
         mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createReviews.sql"
+        mysql --host 127.0.0.1 -uroot --port 3306 -e "Select * FROM laravel.eco_products;"
 
     - name: Execute tests using artisan
       working-directory: ./WECOP

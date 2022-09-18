@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `not_eco_products`
 --
 
-CREATE TABLE `not_eco_products` (
+CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double(8,2) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `not_eco_products` (
 -- Dumping data for table `not_eco_products`
 --
 
-INSERT INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `product_life`, `created_at`, `updated_at`) VALUES
+INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `product_life`, `created_at`, `updated_at`) VALUES
 (1, 'Common Straw', 0.01, 1.46, 1, '2021-03-23 04:20:10', '2021-03-23 04:20:10'),
 (4, 'Common Toothbrush', 2.74, 160.00, 90, '2021-04-04 03:42:00', '2021-04-04 03:42:00'),
 (5, 'Common makeup remover pads', 2.99, 19.70, 1, '2021-04-04 03:42:00', '2021-04-04 03:42:00');

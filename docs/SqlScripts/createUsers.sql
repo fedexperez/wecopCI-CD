@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_name`, `name`, `credit_card`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
+INSERT IGNORE INTO `users` (`id`, `user_name`, `name`, `credit_card`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'catas', 'catalina', NULL, 'catalina.lopez1999@gmail.com', '$2y$10$qffTcEm3OoQGi2V7AmGpEOzHYHHDc7x7PKw8lywNKtQkB9pNcnv3i', 'admin', '2021-03-23 04:19:13', '2021-03-23 04:19:13'),
 (2, 'Shiroke', 'Andrés Chaves', NULL, 'adchavesp@eafit.edu.co', '$2y$10$oiZxxr/5eIjCe5P6UYNiPOls5MqfrJI6nReuGPdQT7w8QEz4GF9sS', 'admin', '2021-04-04 07:22:06', '2021-04-04 07:22:06'),
 (3, 'Fedex', 'Federico Perez', NULL, 'fperezm1@eafit.edu.co', '$2y$10$oQRl4nTCHl6c5YGO9BvDFu/DDjRx6tgvDGl9.dtvg6mRgRQEKF5MK', 'admin', '2021-04-04 07:23:35', '2021-04-04 07:23:35'),
