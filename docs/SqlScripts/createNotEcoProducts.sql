@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `not_eco_products` (
-  `id` bigint(20) UNSIGNED NOT NULL PRIMARY KEY,
+  `id` bigint(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, AUTO_INCREMENT=6,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double(8,2) NOT NULL,
   `emision` double(8,2) NOT NULL,
@@ -61,8 +61,6 @@ INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `produc
 --
 -- AUTO_INCREMENT for table `not_eco_products`
 --
-ALTER TABLE `not_eco_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 END
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
