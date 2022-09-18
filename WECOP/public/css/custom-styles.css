@@ -1,0 +1,9 @@
+.padding-20{
+    padding: 20px;
+}
+
+.aParent div {
+    float: left;
+    clear: none; 
+    padding: 20px;
+}
