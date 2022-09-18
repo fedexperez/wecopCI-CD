@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `emision` double(8,2) NOT NULL,
   `product_life` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -53,8 +54,6 @@ INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `produc
 --
 -- Indexes for table `not_eco_products`
 --
-ALTER TABLE `not_eco_products`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

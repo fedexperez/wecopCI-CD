@@ -49,7 +49,7 @@ jobs:
     
     - name: Run Migration
       working-directory: ./WECOP
-      run: php artisan migrate:rollback
+      run: php artisan migrate:refresh
       env:
         DB_PORT: ${{ job.services.mysql.ports['3306'] }}
     
