@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `not_eco_products`
 --
-IF (NOT EXISTS `not_eco_products`) 
+IF NOT EXISTS(select * from not_eco_product) 
 BEGIN
 CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
