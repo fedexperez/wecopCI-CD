@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `not_eco_products`
 --
-
-IF NOT EXISTS `not_eco_products` (
+IF (NOT EXISTS `not_eco_products`) 
+BEGIN
 CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -55,7 +55,7 @@ INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `produc
 -- Indexes for table `not_eco_products`
 --
 ALTER TABLE `not_eco_products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY  (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -67,8 +67,7 @@ ALTER TABLE `not_eco_products`
 ALTER TABLE `not_eco_products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
-
+END
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-)
