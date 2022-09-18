@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `eco_products`
 --
-
+IF NOT EXISTS `eco_products` (
 CREATE TABLE IF NOT EXISTS `eco_products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -90,3 +90,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+)
