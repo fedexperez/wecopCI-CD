@@ -26,9 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `eco_products`
 --
-IF NOT EXISTS `eco_products` (
+
 CREATE TABLE IF NOT EXISTS `eco_products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` double(8,2) NOT NULL,
   `stock` int(11) NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `eco_products` (
   `not_eco_product` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+);
 
 --
 -- Dumping data for table `eco_products`
@@ -63,7 +63,6 @@ INSERT IGNORE INTO `eco_products` (`id`, `name`, `price`, `stock`, `facts`, `des
 -- Indexes for table `eco_products`
 --
 ALTER TABLE `eco_products`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `eco_products_not_eco_product_foreign` (`not_eco_product`);
 
 --
@@ -73,8 +72,7 @@ ALTER TABLE `eco_products`
 --
 -- AUTO_INCREMENT for table `eco_products`
 --
-ALTER TABLE `eco_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `eco_products` AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -90,4 +88,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-)
