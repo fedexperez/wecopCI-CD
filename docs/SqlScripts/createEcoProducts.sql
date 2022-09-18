@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `eco_products` (
   `emision` double(8,2) NOT NULL,
   `product_life` int(11) NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `not_eco_product` bigint(20) UNSIGNED NOT NULL,
+  CONSTRAINT eco_products_not_eco_product_foreign FOREIGN KEY (not_eco_product) REFERENCES not_eco_products(id);
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 );
@@ -79,9 +79,6 @@ ALTER TABLE `eco_products` AUTO_INCREMENT=10;
 --
 -- Constraints for table `eco_products`
 --
-ALTER TABLE eco_products
-   ADD CONSTRAINT eco_products_not_eco_product_foreign FOREIGN KEY (not_eco_product)
-      REFERENCES not_eco_products (id);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
