@@ -53,14 +53,8 @@ INSERT IGNORE INTO `not_eco_products` (`id`, `name`, `price`, `emision`, `produc
 --
 -- Indexes for table `not_eco_products`
 --
-
-BEGIN
-  IF 
-  (SELECT COUNT(*)FROM `not_eco_products`)= 1
-  THEN 
-  ALTER TABLE `not_eco_products`
-    ADD PRIMARY KEY (`id`);
-END
+ALTER TABLE `not_eco_products`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
