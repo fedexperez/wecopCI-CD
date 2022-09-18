@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `not_eco_products` (
   `product_life` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+);
 
 --
 -- Dumping data for table `not_eco_products`
