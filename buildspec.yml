@@ -15,8 +15,7 @@ phases:
          php composer-setup.php ;
          php -r "unlink('composer-setup.php');" ;
          mv composer.phar /usr/local/bin/composer
-         sudo apt install php-mysql
-         
+
  build:
    commands:
      - echo installin mysql into machine
@@ -43,7 +42,7 @@ phases:
      - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
-     - php artisan migrate:refresh
+     - php artisan migrate:refresh --force
      - echo mysql fill
      - cd ..
      - ls ./docs/SqlScripts/
