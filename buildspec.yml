@@ -27,11 +27,11 @@ phases:
      - composer Install
      - mysql --version
      - echo Connection to db mysql - $LARAVEL_DB_HOST
-     - echo Connection to db mysql - $LARAVEL_DB_USERNAME
+     - echo Connection to db mysql - $LARAVEL_DB_USER
      - echo Connection to db mysql - $LARAVEL_DB_PASSWORD
      - pwd
      - export HOST=$LARAVEL_DB_HOST
-     - export USER=$LARAVEL_DB_USERNAME
+     - export USER=$LARAVEL_DB_USER
      - export PASS=$LARAVEL_DB_PASSWORD
      - echo DB_USERNAME=$USER >> .env
      - echo DB_PASSWORD=$PASS >> .env
