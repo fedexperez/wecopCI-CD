@@ -31,7 +31,6 @@ phases:
      - php artisan key:generate
      - php artisan migrate:refresh
 
-
  post_build:
    commands:
      - echo mysql fill
