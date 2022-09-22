@@ -1,56 +1,48 @@
 version: 0.2
+env:
+  variables:
+    DB_HOST: "localhost"
+    DB_DATABASE: "laravel"
 phases:
  install:
    commands:
      - |
          export DEBIAN_FRONTEND=noninteractive
-         #Install php8.0
+         #Update
          apt-get update
-         apt-get install -y  software-properties-common
-         LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php
-         apt-get update
-         # Install PHP
-         apt-get install -y php8.0\
-                  php8.0-xml \
-                  php8.0-zip \
-                  php8.0-mysql \
-                  php8.0-mbstring \
-                  php8.0-gd \
-                  php8.0-xdebug \
-                  php-xdebug \
-                  php8.0-curl
-         
-         php --version
-         #Enable xdebug - phpunit uses this for code coverage
-         phpenmod xdebug
          #Install composer
          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
          php composer-setup.php ;
          php -r "unlink('composer-setup.php');" ;
          mv composer.phar /usr/local/bin/composer
-         #Various handy node based dev tools - do you need these during your build? Comment if not.
-         #npm install -g gulp
-         #npm install -g grunt
-         #npm install -g webpack
-     # Start Mysql if you need it
-     # - apt-get install -y mysql-server
-     # - su mysql -s /bin/bash -c "/usr/sbin/mysqld" &
  build:
    commands:
+     - echo installin mysql into machine
+     - apt-get install -y mysql-server
+     - cd ./WECOP
+     - echo "creating .env file"
+     - cp .env.example .env
      - echo Build started on `date`
      - echo Installing composer deps
-     - php -r "file_exists('.env') || copy('.env.example', '.env');"
-     - composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-     - 
-     
+     - composer Install
+     - mysql --version
+     - mysql --host db-wecop.cbywv3mpsh1a.us-east-1.rds.amazonaws.com -uwecop -pwecoppassword --port 3306 -e "SHOW DATABASES;"
+     - echo generating app key
+     - php artisan key:generate
+     - php artisan migrate:refresh
 
  post_build:
    commands:
+     - echo mysql fill
+     - mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW TABLES FROM laravel;"
+     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createNotEcoProducts.sql;"
+     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createEcoProducts.sql;"
+     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createUsers.sql;"
+     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createReviews.sql;"
      - echo Build completed on `date`
-     # Do you need to do this? In many cases phpunit will use sqllite or similar to avoid the need for a real DB.
+     - echo running Unit test
+     # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
      # If you don't need it delete it
      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
      # - mysqladmin -u test create test
-     - php artisan key:generate
-     - php artisan migrate:refresh
-     - ./vendor/bin/phpunit
+     - php artisan test
