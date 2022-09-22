@@ -23,8 +23,8 @@ phases:
      - echo "creating .env file"
      - cp .env.example .env
      - echo Build started on `date`
-     - echo Installing composer deps
-     - composer Install
+    #  - echo Installing composer deps
+    #  - composer Install
      - mysql --version
      - echo Connection to db mysql - $LARAVEL_DB_HOST
      - echo Connection to db mysql - $LARAVEL_DB_USER
@@ -41,6 +41,8 @@ phases:
      - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
+     - echo Installing composer deps
+     - composer Install
     #  - php artisan migrate:refresh
     #  - echo mysql fill
     #  - cd ..
@@ -58,6 +60,8 @@ phases:
     #  - cd ./WECOP
      - echo running Unit test
      - pwd
+     - composer dump-autoload
+     - php artisan config:cache
      # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
      # If you don't need it delete it
      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
