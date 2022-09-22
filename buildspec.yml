@@ -26,7 +26,7 @@ phases:
      - echo Installing composer deps
      - composer Install
      - mysql --version
-     - mysql --host db-wecop.cbywv3mpsh1a.us-east-1.rds.amazonaws.com -uwecop -pwecoppassword --port 3306 -e "SHOW DATABASES;"
+     - mysql --host $DB_HOST -u $DB_USER -p $DB_PSW --port 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
      - php artisan migrate:refresh
