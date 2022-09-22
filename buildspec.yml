@@ -20,7 +20,6 @@ phases:
    commands:
      - echo installin mysql into machine
      - apt-get install -y mysql-server
-     - cd ./WECOP
      - echo "creating .env file"
      - cp .env.example .env
      - echo Build started on `date`
@@ -37,7 +36,7 @@ phases:
      - echo DB_USERNAME=$USER >> .env
      - echo DB_PASSWORD=$PASS >> .env
      - echo DB_HOST=$HOST >> .env
-     - echo APP_URL=http://wecop-env.eba-5f5wxxh3.us-east-1.elasticbeanstalk.com/public >> .env
+     - echo APP_URL=http://wecopcicd-env.eba-munkyxqs.us-east-1.elasticbeanstalk.com >> .env
      - cat .env
      - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -e "SHOW DATABASES;"
      - echo generating app key
@@ -63,5 +62,5 @@ phases:
      # If you don't need it delete it
      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
      # - mysqladmin -u test create test
-    #  - php artisan test
-    # - php artisan serve  
+     #  - php artisan test
+     # - php artisan serve  
