@@ -26,7 +26,7 @@ phases:
      - echo Installing composer deps
      - composer Install
      - mysql --version
-     - mysql --host $db_host -u $db_user -p $db_psw --port 3306 -e "SHOW DATABASES;"
+     - mysql --host $DB_HOST -u wecop -p wecoppassword --port 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
      - php artisan migrate:refresh
