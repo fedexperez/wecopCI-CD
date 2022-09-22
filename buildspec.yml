@@ -36,7 +36,7 @@ phases:
      - echo DB_USERNAME=$USER >> .env
      - echo DB_PASSWORD=$PASS >> .env
      - echo DB_HOST=$HOST >> .env
-     - echo APP_URL=http://wecopcicd-env.eba-nx2zsnsp.us-east-1.elasticbeanstalk.com/ >> .env
+     - echo APP_URL=http://wecop-env.eba-5f5wxxh3.us-east-1.elasticbeanstalk.com/public >> .env
      - cat .env
      - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -e "SHOW DATABASES;"
      - echo generating app key
