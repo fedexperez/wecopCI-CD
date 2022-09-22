@@ -58,6 +58,7 @@ phases:
      - ls
     #  - cd ./WECOP
      - echo running Unit test
+     - echo $uri
      # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
      # If you don't need it delete it
      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
