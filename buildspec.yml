@@ -26,8 +26,8 @@ phases:
      - echo Installing composer deps
      - composer Install
      - mysql --version
-     - echo $DB_HOST
-     - mysql -h $DB_HOST -u $DB_USER -p $DB_PASSWORD --port 3306 -e "SHOW DATABASES;"
+     - echo $LARAVEL_DB_HOST
+     - mysql -h $LARAVEL_DB_HOST -u $LARAVEL_DB_USER -p $LARAVEL_DB_PASSWORD --port 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
      - php artisan migrate:refresh
