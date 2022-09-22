@@ -26,24 +26,39 @@ phases:
      - echo Installing composer deps
      - composer Install
      - mysql --version
-     - echo $LARAVEL_DB_HOST
-     - mysql -h $LARAVEL_DB_HOST -u $LARAVEL_DB_USER -p $LARAVEL_DB_PASSWORD --port 3306 -e "SHOW DATABASES;"
+     - echo Connection to db mysql - $LARAVEL_DB_HOST
+     - echo Connection to db mysql - $LARAVEL_DB_USERNAME
+     - echo Connection to db mysql - $LARAVEL_DB_PASSWORD
+     - pwd
+     - export HOST=$LARAVEL_DB_HOST
+     - export USER=$LARAVEL_DB_USERNAME
+     - export PASS=$LARAVEL_DB_PASSWORD
+     - echo DB_USERNAME=$USER >> .env
+     - echo DB_PASSWORD=$PASS >> .env
+     - echo DB_HOST=$HOST >> .env
+     - cat .env
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -e "SHOW DATABASES;"
      - echo generating app key
      - php artisan key:generate
      - php artisan migrate:refresh
+     - echo mysql fill
+     - cd ..
+     - ls ./docs/SqlScripts/
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -D laravel -e "SHOW TABLES FROM laravel;"
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -D laravel -e "Source ./docs/SqlScripts/createNotEcoProducts.sql;"
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -D laravel -e "Source ./docs/SqlScripts/createEcoProducts.sql;"
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -D laravel -e "Source ./docs/SqlScripts/createUsers.sql;"
+     - mysql --host ${HOST} -u ${USER} -p${PASS} -P 3306 -D laravel -e "Source ./docs/SqlScripts/createReviews.sql;"
+     
 
  post_build:
    commands:
-     - echo mysql fill
-     - mysql --host 127.0.0.1 -uroot --port 3306 -e "SHOW TABLES FROM laravel;"
-     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createNotEcoProducts.sql;"
-     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createEcoProducts.sql;"
-     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createUsers.sql;"
-     - mysql --host 127.0.0.1 -uroot --port 3306 -D laravel -e "Source ./docs/SqlScripts/createReviews.sql;"
      - echo Build completed on `date`
+     - cd ./WECOP
      - echo running Unit test
      # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
      # If you don't need it delete it
      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
      # - mysqladmin -u test create test
      - php artisan test
+     - php artisan serve
